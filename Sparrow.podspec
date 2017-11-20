@@ -28,7 +28,7 @@ s.author           = { 'Joeytat' => 'joeyqaq@gmail.com' }
 s.source           = { :git => 'https://github.com/Joeytat/Sparrow.git', :tag => s.version.to_s }
 # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-s.ios.deployment_target = '8.0'
+s.ios.deployment_target = '9.0'
 
 s.source_files = 'Sparrow/Classes/**/*'
 
@@ -37,8 +37,8 @@ s.source_files = 'Sparrow/Classes/**/*'
 # }
 
 # s.public_header_files = 'Pod/Classes/**/*.h'
-# s.frameworks = 'UIKit', 'MapKit'
 
+s.frameworks = 'UIKit'
 s.dependency 'Moya', '~> 10.0.0'
 s.dependency 'RxSwift', '~> 4.0.0'
 s.dependency 'RxCocoa', '~> 4.0.0'
@@ -50,5 +50,6 @@ s.dependency 'Kingfisher', '~> 4.3.0'
 s.dependency 'RxDataSources', '~> 3.0.2'
 s.dependency 'NSObject+Rx', '~> 4.2.0'
 s.dependency 'BSImagePicker', '~> 2.7.1'
+
 end
 
