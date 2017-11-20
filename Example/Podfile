@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'Sparrow_Example' do
+  pod 'Sparrow', :path => '../'
+
+  target 'Sparrow_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
