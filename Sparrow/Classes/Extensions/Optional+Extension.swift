@@ -7,45 +7,13 @@
 
 import Foundation
 
-public extension Optional where Wrapped == String {
-  public var orEmpty: String {
-    get {
-      guard let str = self else { return "" }
-      return str
-    }
+// Get from https://gist.github.com/PaulTaykalo/2ebfe0d7c1ca9fff1938506e910f738c
+
+public extension Optional {
+  public func `or`(_ value : Wrapped?) -> Optional {
+    return self ?? value
   }
-}
-
-protocol NumericOptional {
-  associatedtype Value: Numeric
-  var orZero: Value { get }
-}
-
-
-public extension Optional where Wrapped == Int {
-  public var orZero: Int {
-    get {
-      guard let num = self else { return 0 }
-      return num
-    }
-  }
-}
-
-
-public extension Optional where Wrapped == Float {
-  public var orZero: Float {
-    get {
-      guard let num = self else { return 0 }
-      return num
-    }
-  }
-}
-
-public extension Optional where Wrapped == Double {
-  var orZero: Double {
-    get {
-      guard let num = self else { return 0.0 }
-      return num
-    }
+  public func `or`(_ value: Wrapped) -> Wrapped {
+    return self ?? value
   }
 }
