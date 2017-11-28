@@ -26,7 +26,7 @@ public extension Date {
     
     public var startOfTheDay: Date {
         get {
-            return Calendar.current.startOfDay(for: Date())
+            return Calendar.current.startOfDay(for: self)
         }
     }
     
