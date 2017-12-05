@@ -58,7 +58,7 @@ public extension Reactive where Base: UITableView {
                     return acc
                 }
             }
-            .throttle(0.3, scheduler: MainScheduler.asyncInstance)
+            .throttle(0.3, scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
             .distinctUntilChanged()
             .share()
     }
