@@ -10,6 +10,7 @@ import Foundation
 private var kEmptyImageViewKey: Void?
 private var kEmptyContainerViewKey: Void?
 private var kEmptyLabelKey: Void?
+
 public extension UITableView {
     public var emptyContainerView: UIStackView {
         get {
@@ -51,6 +52,22 @@ public extension UITableView {
                 let _ = emptyContainerView
                 return label
             }
+        }
+    }
+}
+
+public extension UITableView {
+    public func isNearBottomEdge(edgeOffset: CGFloat = 20.0) -> Bool {
+        return self.contentOffset.y + self.frame.size.height + edgeOffset > self.contentSize.height
+    }
+    
+    public var rowCount: Int {
+        get {
+            let sectionCount = self.numberOfSections
+            let rowCount = Array(repeating: 0, count: sectionCount).reduce(0) { acc, nextSectionIndex in
+                return acc + self.numberOfRows(inSection: nextSectionIndex)
+            }
+            return rowCount
         }
     }
 }
