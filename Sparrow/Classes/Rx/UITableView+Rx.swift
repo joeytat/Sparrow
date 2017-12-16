@@ -20,9 +20,6 @@ public extension Reactive where Base: UITableView {
     public func onNextPage(pageSize: Int) -> Observable<Int> {
         let tableView = self.base
         let loading = self.base.rx.contentOffset
-            
-            .observeOn(MainScheduler.asyncInstance)
-            .debounce(0.1, scheduler: MainScheduler.asyncInstance)
             .map {[unowned tableView]_ -> TableLoadingType in
                 if tableView.contentOffset.y < -20 {
                     return .refresh
@@ -44,6 +41,8 @@ public extension Reactive where Base: UITableView {
                     return acc
                 }
             }
+            .observeOn(MainScheduler.asyncInstance)
+            .throttle(0.1, scheduler: MainScheduler.asyncInstance)
             .distinctUntilChanged { old, new in
                 switch new {
                 case 1:
