@@ -24,6 +24,7 @@ public extension UITableView {
                 addSubview(stackView)
                 stackView.snp.makeConstraints { make in
                     make.center.equalTo(self)
+                    make.width.equalTo(self).offset(-30)
                 }
                 objc_setAssociatedObject(self, &kEmptyContainerViewKey, stackView, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
                 return stackView
