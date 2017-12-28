@@ -36,6 +36,11 @@ public extension Date {
             return Calendar.current.date(byAdding: .minute, value: 59, to: hours)!
         }
     }
+    
+    public func next(day: Int) -> Date {
+        let date = Calendar.current.date(byAdding: .day, value: day, to: self)!
+        return date
+    }
 }
 
 

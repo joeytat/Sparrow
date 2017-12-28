@@ -105,7 +105,7 @@ public protocol UIViewLoading {}
 extension UIView : UIViewLoading {}
 public extension UIViewLoading where Self : UIView {
     public static func loadFromNib() -> Self {
-        let nibName = "\(self)".characters.split{$0 == "."}.map(String.init).last!
+        let nibName = "\(self)".split{$0 == "."}.map(String.init).last!
         let nib = UINib(nibName: nibName, bundle: nil)
         return nib.instantiate(withOwner: self, options: nil).first as! Self
     }

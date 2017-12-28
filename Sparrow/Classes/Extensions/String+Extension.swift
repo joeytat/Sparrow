@@ -28,6 +28,11 @@ public extension Optional where Wrapped == String {
     public var isNotNilNotEmpty: Bool {
         return !isNilOrEmpty
     }
+    
+    var orEmpty: String {
+        guard let str = self else { return "" }
+        return str
+    }
 }
 
 
