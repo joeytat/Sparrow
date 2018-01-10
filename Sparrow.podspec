@@ -50,6 +50,9 @@ s.dependency 'Kingfisher', '~> 4.3.0'
 s.dependency 'RxDataSources', '~> 3.0.2'
 s.dependency 'NSObject+Rx', '~> 4.2.0'
 s.dependency 'BSImagePicker', '~> 2.7.1'
+s.dependency 'Reachability', '~> 3.2'
+s.dependency 'MJRefresh', '~> 3.1.15.1'
+s.dependency 'DKImagePickerController', '~> 3.8.1'
 
 end
 
