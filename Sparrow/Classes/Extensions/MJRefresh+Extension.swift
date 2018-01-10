@@ -14,7 +14,7 @@ public enum ListData<T> {
     case refresh([T])
     case more([T])
     case noMore([T])
-    var items: Array<T> {
+    public var items: Array<T> {
         switch self {
         case .more(let items), .noMore(let items), .refresh(let items):
             return items
@@ -24,7 +24,7 @@ public enum ListData<T> {
 
 private var kPageIndexAssociatedKey: String = "sparrow.pageIndex"
 public extension Reactive where Base: UITableView {
-    var pageIndex: Variable<Int> {
+    public var pageIndex: Variable<Int> {
         get {
             if let value = objc_getAssociatedObject(self.base, &kPageIndexAssociatedKey) as? Variable<Int> {
                 return value

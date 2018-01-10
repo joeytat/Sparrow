@@ -9,8 +9,8 @@ import DKImagePickerController
 import RxSwift
 import UIKit
 
-extension Reactive where Base: DKImagePickerController {
-    static func present(selectedItems: [DKAsset] = [], limit: Int = 9) -> Observable<[DKAsset]> {
+public extension Reactive where Base: DKImagePickerController {
+    public static func present(selectedItems: [DKAsset] = [], limit: Int = 9) -> Observable<[DKAsset]> {
         return Observable<[DKAsset]>.create { observer in
             let vc = DKImagePickerController()
             let visibleVC = UIApplication.shared.keyWindow?.visibleViewController
@@ -33,8 +33,8 @@ extension Reactive where Base: DKImagePickerController {
     }
 }
 
-extension Reactive where Base: DKAsset {
-    func load(_ size: CGSize) -> Observable<(id:String, image: UIImage)> {
+public extension Reactive where Base: DKAsset {
+    public func load(_ size: CGSize) -> Observable<(id:String, image: UIImage)> {
         let localId = self.base.localIdentifier
         return Observable<(id:String, image: UIImage)>
             .create { observer in
@@ -47,7 +47,7 @@ extension Reactive where Base: DKAsset {
             .debug()
     }
     
-    func origin() -> Observable<(id:String, image: UIImage)> {
+    public func origin() -> Observable<(id:String, image: UIImage)> {
         let localId = self.base.localIdentifier
         return Observable<(id:String, image: UIImage)>
             .create { observer in

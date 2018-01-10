@@ -24,15 +24,15 @@ import Foundation
 import Reachability
 import RxSwift
 
-extension Reachability {
-  enum Errors: Error {
+public extension Reachability {
+  public enum Errors: Error {
     case unavailable
   }
 }
 
-extension Reactive where Base: Reachability {
+public extension Reactive where Base: Reachability {
 
-  static var reachable: Observable<Bool> {
+  public static var reachable: Observable<Bool> {
     return Observable.create { observer in
 
       let reachability = Reachability.forInternetConnection()
