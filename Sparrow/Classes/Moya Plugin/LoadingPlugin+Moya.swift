@@ -10,7 +10,7 @@ import Moya
 import UIKit
 import Result
 
-public final class LoadingPlugin: PluginType {
+public class LoadingPlugin: PluginType {
     
     public init() {}
     
