@@ -73,8 +73,3 @@ public extension UITableView {
     }
 }
 
-public extension UITableViewCell {
-    public static var nib: UINib {
-        return UINib(nibName: String(describing: self), bundle: nil)
-    }
-}

@@ -34,8 +34,7 @@ public extension UIView {
     @IBInspectable public var shadowOffset: CGSize {
         set {
             layer.shadowOffset = newValue
-            layer.shadowRadius = 1
-            layer.shadowOpacity = 0.3
+            layer.shadowOpacity = 0.5
         }
         get {
             return layer.shadowOffset
@@ -48,6 +47,15 @@ public extension UIView {
         }
         get {
             return UIColor(cgColor: layer.shadowColor ?? UIColor.clear.cgColor)
+        }
+    }
+
+    @IBInspectable public var shadowRadius: CGFloat {
+        set{
+            layer.shadowRadius = newValue
+        }
+        get {
+            return layer.shadowRadius
         }
     }
     
@@ -98,8 +106,13 @@ public extension UIView{
             frame.size.height = newValue
         }
     }
-}
 
+
+    public static var nib: UINib {
+        return UINib(nibName: String(describing: self), bundle: nil)
+    }
+
+}
 
 public protocol UIViewLoading {}
 extension UIView : UIViewLoading {}
