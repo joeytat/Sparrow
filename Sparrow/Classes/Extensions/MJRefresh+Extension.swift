@@ -11,11 +11,14 @@ import RxSwift
 import MJRefresh
 
 public enum ListData<T> {
+    case initial
     case refresh([T])
     case more([T])
     case noMore([T])
     public var items: Array<T> {
         switch self {
+        case .initial:
+            return []
         case .more(let items), .noMore(let items), .refresh(let items):
             return items
         }
