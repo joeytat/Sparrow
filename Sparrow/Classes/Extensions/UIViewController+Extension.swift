@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Toast_Swift
 
 public extension UIViewController {
     public enum MessageType {
@@ -13,7 +14,7 @@ public extension UIViewController {
     }
     public func show(_ message: String, type: MessageType = .info) {
         self.view.hideToast()
-        self.view.makeToast(message.isEmpty ? kServerErrorMsg : message,
+        self.view.makeToast(message,
                             duration: 1.5,
                             position: .top,
                             completion: nil)
