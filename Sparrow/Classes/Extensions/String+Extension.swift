@@ -8,11 +8,17 @@
 import Foundation
 
 public extension String {
+    
     public func date(with format: String = "yyyy-MM-dd hh:mm:ss") -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
         return dateFormatter.date(from: self)
     }
+
+    public var timestampDate: Date {
+        return Date(timeIntervalSince1970: Double(self).or(0))
+    }
+
 }
 
 public extension Optional where Wrapped == String {
@@ -72,5 +78,17 @@ public extension String {
     
     public func isIdCard() -> Bool {
         return self.matches(for: "^([1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}([0-9]|X))$").count > 0
+    }
+
+    public var trimSpace: String {
+        return self.replacingOccurrences(of: " ", with: "")
+    }
+
+    public var intString: String?  {
+        if let value = Int(self) {
+            return "\(value)"
+        } else {
+            return nil
+        }
     }
 }

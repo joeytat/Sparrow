@@ -53,6 +53,6 @@ s.dependency 'BSImagePicker', '~> 2.7.1'
 s.dependency 'Reachability', '~> 3.2'
 s.dependency 'MJRefresh', '~> 3.1.15.1'
 s.dependency 'DKImagePickerController', '~> 3.8.1'
-
+s.dependency 'Toast-Swift', '~> 3.0.1'
 end
 

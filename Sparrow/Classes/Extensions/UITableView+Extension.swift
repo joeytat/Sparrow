@@ -12,6 +12,32 @@ private var kEmptyContainerViewKey: Void?
 private var kEmptyLabelKey: Void?
 
 public extension UITableView {
+
+    public func updateState<T>(_ n: ListData<T>, emptyMsg: String) {
+        switch n {
+        case .initial:
+            self.emptyLabel.text = "加载中...( ･᷄ὢ･᷅ )"
+        case .refresh:
+            self.rx.pageIndex.value = 2
+            self.mj_header.endRefreshing()
+            self.mj_footer.resetNoMoreData()
+        case .more:
+            self.rx.pageIndex.value += 1
+            self.mj_footer.endRefreshing()
+        case .noMore:
+            self.mj_header.endRefreshing()
+            self.mj_footer.endRefreshingWithNoMoreData()
+
+            if n.items.count == 0 {
+                self.emptyLabel.text = emptyMsg
+                self.mj_footer.isHidden = true
+            } else {
+                self.mj_footer.isHidden = false
+            }
+        }
+        self.emptyContainerView.isHidden = n.items.count > 0
+    }
+
     public var emptyContainerView: UIStackView {
         get {
             if let container = objc_getAssociatedObject(self, &kEmptyContainerViewKey) as? UIStackView {
@@ -43,6 +69,7 @@ public extension UITableView {
             }
         }
     }
+
     public var emptyLabel: UILabel {
         get {
             if let label = objc_getAssociatedObject(self, &kEmptyLabelKey) as? UILabel {
