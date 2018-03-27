@@ -41,6 +41,7 @@ public extension Reactive where Base: DKAsset {
                 let scaledSize = CGSize(width: size.width * UIScreen.main.scale, height: size.height * UIScreen.main.scale)
                 self.base.fetchImageWithSize(scaledSize) { (image, _) in
                     observer.onNext((localId, image!))
+                    observer.onCompleted()
                 }
                 return Disposables.create()
             }
@@ -53,6 +54,7 @@ public extension Reactive where Base: DKAsset {
             .create { observer in
                 self.base.fetchOriginalImage(false) { (image, _) in
                     observer.onNext((localId, image!))
+                    observer.onCompleted()
                 }
                 return Disposables.create()
             }
