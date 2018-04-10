@@ -61,7 +61,6 @@ public extension Reactive where Base: UITableView {
                     tableView.mj_footer = nil
                 }
             }
-            .debug()
             .share(replay: 1, scope: SubjectLifetimeScope.forever)
     }
 }

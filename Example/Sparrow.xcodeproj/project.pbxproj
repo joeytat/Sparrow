@@ -40,12 +40,12 @@
 		607FACE51AFB9204008FA782 /* Sparrow_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Sparrow_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		61674725BC3EBF3419A6B208 /* Sparrow.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = Sparrow.podspec; path = ../Sparrow.podspec; sourceTree = "<group>"; };
+		61674725BC3EBF3419A6B208 /* Sparrow.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Sparrow.podspec; path = ../Sparrow.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		76C2FDAF5C44AF8FF79C7B30 /* Pods_Sparrow_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sparrow_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92EE46D2D8C621471D6E94EA /* Pods-Sparrow_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sparrow_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sparrow_Example/Pods-Sparrow_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		CE96D24F9022A5987F112346 /* Pods-Sparrow_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sparrow_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sparrow_Example/Pods-Sparrow_Example.release.xcconfig"; sourceTree = "<group>"; };
-		DA55C011461F03C50F09B02F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		DA672F1FFD5A4CD948CF32FA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		DA55C011461F03C50F09B02F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		DA672F1FFD5A4CD948CF32FA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E1B0031CE8C94C3AE8AB3CF3 /* Pods-Sparrow_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sparrow_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sparrow_Tests/Pods-Sparrow_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 

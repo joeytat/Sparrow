@@ -45,7 +45,6 @@ public extension Reactive where Base: DKAsset {
                 }
                 return Disposables.create()
             }
-            .debug()
     }
     
     public func origin() -> Observable<(id:String, image: UIImage)> {
@@ -58,6 +57,5 @@ public extension Reactive where Base: DKAsset {
                 }
                 return Disposables.create()
             }
-            .debug()
     }
 }
