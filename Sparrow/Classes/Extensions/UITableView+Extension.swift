@@ -10,6 +10,7 @@ import Foundation
 private var kEmptyImageViewKey: Void?
 private var kEmptyContainerViewKey: Void?
 private var kEmptyLabelKey: Void?
+private var kEmptyButtonKey: Void?
 
 public extension UITableView {
 
@@ -43,14 +44,14 @@ public extension UITableView {
             if let container = objc_getAssociatedObject(self, &kEmptyContainerViewKey) as? UIStackView {
                 return container
             } else {
-                let stackView = UIStackView(arrangedSubviews: [emptyImageView, emptyLabel])
+                let stackView = UIStackView(arrangedSubviews: [emptyImageView, emptyLabel, emptyButton])
                 stackView.alignment = .center
                 stackView.axis = .vertical
                 stackView.spacing = 20
                 addSubview(stackView)
                 stackView.snp.makeConstraints { make in
                     make.center.equalTo(self)
-                    make.width.equalTo(self).offset(-30)
+                    make.width.equalTo(self).offset(-100)
                 }
                 objc_setAssociatedObject(self, &kEmptyContainerViewKey, stackView, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
                 return stackView
@@ -79,6 +80,19 @@ public extension UITableView {
                 objc_setAssociatedObject(self, &kEmptyLabelKey, label, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
                 let _ = emptyContainerView
                 return label
+            }
+        }
+    }
+
+    public var emptyButton: UIButton {
+        get {
+            if let button = objc_getAssociatedObject(self, &kEmptyButtonKey) as? UIButton {
+                return button
+            } else {
+                let button = UIButton(type: .custom)
+                objc_setAssociatedObject(self, &kEmptyButtonKey, button, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                let _ = emptyContainerView
+                return button
             }
         }
     }
