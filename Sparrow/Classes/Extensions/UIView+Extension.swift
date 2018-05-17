@@ -62,7 +62,7 @@ public extension UIView {
     @IBInspectable public var borderColor: UIColor {
         set {
             layer.borderColor = newValue.cgColor
-            layer.borderWidth = 0.5
+            layer.borderWidth = 1
         }
         get {
             return UIColor(cgColor: layer.borderColor ?? UIColor.clear.cgColor)
