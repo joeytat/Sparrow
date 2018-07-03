@@ -47,4 +47,22 @@ public struct Device {
         guard let number = URL(string: "tel://" + number) else { return }
         UIApplication.shared.openURL(number)
     }
+    
+    
+    public static func openSettings() {
+        guard let url = URL(string: UIApplicationOpenSettingsURLString) else { return }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+    
+    public static var isX: Bool {
+        return UIScreen.main.nativeBounds.height == 2436
+    }
+    
+    public static var safeArea: UIEdgeInsets {
+        if #available(iOS 11.0, *) {
+            return UIApplication.shared.keyWindow!.safeAreaInsets
+        } else {
+            return UIEdgeInsets.zero
+        }
+    }
 }
