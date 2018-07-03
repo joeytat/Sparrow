@@ -51,7 +51,9 @@ public struct Device {
     
     public static func openSettings() {
         guard let url = URL(string: UIApplicationOpenSettingsURLString) else { return }
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
     }
     
     public static var isX: Bool {
