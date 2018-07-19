@@ -8,23 +8,23 @@
 import Foundation
 
 public extension UIWindow {
-  public var visibleViewController: UIViewController? {
-    return UIWindow.getVisibleViewControllerFrom(self.rootViewController)
-  }
-  
-  public static func getVisibleViewControllerFrom(_ vc: UIViewController?) -> UIViewController? {
-    if let nc = vc as? UINavigationController {
-      return UIWindow.getVisibleViewControllerFrom(nc.visibleViewController)
-    } else if let tc = vc as? UITabBarController {
-      return UIWindow.getVisibleViewControllerFrom(tc.selectedViewController)
-    } else {
-      if let pvc = vc?.presentedViewController {
-        return UIWindow.getVisibleViewControllerFrom(pvc)
-      } else {
-        return vc
-      }
+    public var visibleViewController: UIViewController? {
+        return UIWindow.getVisibleViewControllerFrom(self.rootViewController)
     }
-  }
+    
+    public static func getVisibleViewControllerFrom(_ vc: UIViewController?) -> UIViewController? {
+        if let nc = vc as? UINavigationController {
+            return UIWindow.getVisibleViewControllerFrom(nc.visibleViewController)
+        } else if let tc = vc as? UITabBarController {
+            return UIWindow.getVisibleViewControllerFrom(tc.selectedViewController)
+        } else {
+            if let pvc = vc?.presentedViewController {
+                return UIWindow.getVisibleViewControllerFrom(pvc)
+            } else {
+                return vc
+            }
+        }
+    }
 }
 
 // MARK: - Loading HUD
@@ -32,10 +32,13 @@ private struct AssociatedKeys {
     static var loadingView = "sparrow.loadingView"
     static var semaphore = "sparrow.semaphore"
     static var loadingKeys = "sparrow.loadingKey"
+    static var imageView = "sparrow.imageView"
+    static var loadingActivity = "sparrow.loadingActivity"
+    
 }
 
 public extension UIWindow {
-    private var loadingView: UIView {
+    public var loadingView: UIView {
         get {
             if let view = objc_getAssociatedObject(self, &AssociatedKeys.loadingView) as? UIView {
                 self.bringSubview(toFront: view)
@@ -44,22 +47,26 @@ public extension UIWindow {
                 let view = UIView()
                 view.backgroundColor = UIColor(hue:0.00, saturation:0.00, brightness:0.6, alpha:0.7)
                 view.isUserInteractionEnabled = false
-                view.cornerRadius = 4
                 view.alpha = 0.0
+                view.cornerRadius = 4
                 
-                let indicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
-                indicator.startAnimating()
-                view.addSubview(indicator)
+                view.addSubview(loadingImageView)
+                view.addSubview(loadingActivityView)
                 
-                indicator.snp.makeConstraints { make in
+                loadingActivityView.snp.makeConstraints { make in
                     make.center.equalTo(view)
                 }
+                
+                loadingImageView.snp.makeConstraints{ make in
+                    make.size.equalTo(60)
+                    make.center.equalTo(view)
+                }
+                
                 UIApplication.shared.keyWindow?.addSubview(view)
                 
                 view.snp.makeConstraints { make in
                     make.center.equalTo(view.superview!)
-                    make.width.equalTo(60)
-                    make.height.equalTo(45)
+                    make.size.equalTo(70)
                 }
                 objc_setAssociatedObject(self, &AssociatedKeys.loadingView, view, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
                 return view
@@ -67,6 +74,31 @@ public extension UIWindow {
         }
     }
     
+    public var loadingImageView: UIImageView {
+        get {
+            if let imageView = objc_getAssociatedObject(self, &AssociatedKeys.imageView) as? UIImageView {
+                return imageView
+            } else {
+                let imageView = UIImageView()
+                objc_setAssociatedObject(self, &AssociatedKeys.imageView, imageView, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                return imageView
+            }
+        }
+    }
+    
+    public var loadingActivityView: UIActivityIndicatorView {
+        get {
+            if let view = objc_getAssociatedObject(self, &AssociatedKeys.loadingActivity) as? UIActivityIndicatorView {
+                return view
+            } else {
+                let view = UIActivityIndicatorView(activityIndicatorStyle: .white)
+                view.startAnimating()
+                
+                objc_setAssociatedObject(self, &AssociatedKeys.loadingActivity, view, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                return view
+            }
+        }
+    }
     private var hideLoadingWorkItem: DispatchWorkItem {
         get {
             if let group = objc_getAssociatedObject(self, &AssociatedKeys.semaphore) as? DispatchWorkItem {
