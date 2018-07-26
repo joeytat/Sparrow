@@ -44,9 +44,15 @@ public extension Reactive where Base: UITableView {
         return Observable<Int>
             .create { observer in
                 tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
+                    if #available(iOS 10.0, *) {
+                        UINotificationFeedbackGenerator().notificationOccurred(UINotificationFeedbackType.success)
+                    }
                     observer.onNext(1)
                 })
                 tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: {
+                    if #available(iOS 10.0, *) {
+                        UINotificationFeedbackGenerator().notificationOccurred(UINotificationFeedbackType.success)
+                    }
                     observer.onNext(tableView.rx.pageIndex.value)
                 })
                 

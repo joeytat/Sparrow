@@ -23,7 +23,6 @@ public extension UIView {
     
     @IBInspectable public var cornerRadius: CGFloat {
         set {
-            layer.masksToBounds = true
             layer.cornerRadius = newValue
         }
         get {
@@ -34,7 +33,6 @@ public extension UIView {
     @IBInspectable public var shadowOffset: CGSize {
         set {
             layer.shadowOffset = newValue
-            layer.shadowOpacity = 0.5
         }
         get {
             return layer.shadowOffset
