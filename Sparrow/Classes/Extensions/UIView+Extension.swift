@@ -43,6 +43,7 @@ public extension UIView {
     @IBInspectable public var shadowColor: UIColor {
         set{
             layer.shadowColor = newValue.cgColor
+            layer.shadowOpacity = 1.0
         }
         get {
             return UIColor(cgColor: layer.shadowColor ?? UIColor.clear.cgColor)
