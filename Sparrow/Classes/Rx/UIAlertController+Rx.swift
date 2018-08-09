@@ -28,7 +28,7 @@ public extension Reactive where Base: UIAlertController {
                 }))
                 vc.present(alert, animated: true, completion: nil)
                 return Disposables.create {
-                    vc.dismiss(animated: true, completion: nil)
+                    alert.dismiss(animated: true, completion: nil)
                 }
         }
     }
@@ -47,7 +47,7 @@ public extension Reactive where Base: UIAlertController {
                 }))
                 vc.present(alert, animated: true, completion: nil)
                 return Disposables.create {
-                    vc.dismiss(animated: true, completion: nil)
+                    alert.dismiss(animated: true, completion: nil)
                 }
         }
     }
