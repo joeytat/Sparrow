@@ -9,32 +9,35 @@ import Foundation
 
 
 public extension UITableView {
-
+    
     public func updateState<T>(_ n: ListData<T>, emptyMsg: String) {
+        let header = self.mj_header
+        let footer = self.mj_footer
+        
         switch n {
         case .initial:
             self.emptyLabel.text = "加载中...( ･᷄ὢ･᷅ )"
         case .refresh:
             self.rx.pageIndex.value = 2
-            self.mj_header.endRefreshing()
-            self.mj_footer.resetNoMoreData()
+            header?.endRefreshing()
+            footer?.resetNoMoreData()
         case .more:
             self.rx.pageIndex.value += 1
-            self.mj_footer.endRefreshing()
+            footer?.endRefreshing()
         case .noMore:
-            self.mj_header.endRefreshing()
-            self.mj_footer.endRefreshingWithNoMoreData()
-
+            header?.endRefreshing()
+            footer?.endRefreshingWithNoMoreData()
+            
             if n.items.count == 0 {
                 self.emptyLabel.text = emptyMsg
-                self.mj_footer.isHidden = true
+                footer?.isHidden = true
             } else {
-                self.mj_footer.isHidden = false
+                footer?.isHidden = false
             }
         }
         self.emptyContainerView.isHidden = n.items.count > 0
     }
-
+    
 }
 
 public extension UITableView {
