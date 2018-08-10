@@ -74,4 +74,16 @@ public extension UIImage {
         }
         return filePath
     }
+    
+    /// 解决拍照出现 ext 丢失后图片方向错误的问题
+    public func fixRotation() -> UIImage {
+        guard imageOrientation != .up else { return self }
+        
+        UIGraphicsBeginImageContext(size)
+        draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        guard image != nil else { return self }
+        return image!
+    }
 }

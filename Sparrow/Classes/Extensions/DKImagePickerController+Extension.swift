@@ -62,7 +62,7 @@ public extension Reactive where Base: DKAsset {
                 option.deliveryMode = PHImageRequestOptionsDeliveryMode.highQualityFormat
                 self.base.fetchImageWithSize(scaledSize, options: option) { (image, dict) in
                     if let image = image {
-                        observer.onNext((localId, image))
+                        observer.onNext((localId, image.fixRotation()))
                         observer.onCompleted()
                     } else {
                         observer.onError(DKImagePickerError.originFailed)
@@ -78,7 +78,7 @@ public extension Reactive where Base: DKAsset {
             .create { observer in
                 self.base.fetchOriginalImage(false) { (image, error) in
                     if let image = image {
-                        observer.onNext((localId, image))
+                        observer.onNext((localId, image.fixRotation()))
                         observer.onCompleted()
                     } else {
                         observer.onError(DKImagePickerError.originFailed)
