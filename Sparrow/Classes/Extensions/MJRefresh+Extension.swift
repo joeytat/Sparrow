@@ -39,20 +39,32 @@ public extension Reactive where Base: UITableView {
         }
     }
     
-    public func loading(startIndex: Int = 1) -> Observable<Int> {
+    public func loading(startIndex: Int = 1, animationImages: [UIImage] = [], duration: TimeInterval = 0) -> Observable<Int> {
         let tableView = self.base
         return Observable<Int>
             .create { observer in
-                tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
-                    if #available(iOS 10.0, *) {
-                        UINotificationFeedbackGenerator().notificationOccurred(UINotificationFeedbackType.success)
-                    }
-                    observer.onNext(1)
-                })
+                if animationImages.count > 0 {
+                    let header = MJRefreshGifHeader(refreshingBlock: {
+                        if #available(iOS 10.0, *) {
+                            UINotificationFeedbackGenerator().notificationOccurred(UINotificationFeedbackType.success)
+                        }
+                        observer.onNext(1)
+                    })!
+                    header.lastUpdatedTimeLabel.isHidden = true
+                    header.stateLabel.isHidden = true
+                    
+                    header.setImages(animationImages, duration: duration, for: MJRefreshState.pulling)
+                    header.setImages(animationImages, duration: duration, for: MJRefreshState.refreshing)
+                    tableView.mj_header = header
+                } else {
+                    tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
+                        if #available(iOS 10.0, *) {
+                            UINotificationFeedbackGenerator().notificationOccurred(UINotificationFeedbackType.success)
+                        }
+                        observer.onNext(1)
+                    })
+                }
                 tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: {
-                    if #available(iOS 10.0, *) {
-                        UINotificationFeedbackGenerator().notificationOccurred(UINotificationFeedbackType.success)
-                    }
                     observer.onNext(tableView.rx.pageIndex.value)
                 })
                 
