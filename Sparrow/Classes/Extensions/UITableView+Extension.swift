@@ -27,13 +27,15 @@ public extension UITableView {
         case .noMore:
             header?.endRefreshing()
             footer?.endRefreshingWithNoMoreData()
-            
             if n.items.count == 0 {
                 self.emptyLabel.text = emptyMsg
                 footer?.isHidden = true
             } else {
                 footer?.isHidden = false
             }
+        case .error:
+            header?.endRefreshing()
+            footer?.endRefreshing()
         }
         self.emptyContainerView.isHidden = n.items.count > 0
     }

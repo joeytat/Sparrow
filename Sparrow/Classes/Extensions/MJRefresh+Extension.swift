@@ -15,11 +15,12 @@ public enum ListData<T> {
     case refresh([T])
     case more([T])
     case noMore([T])
+    case error([T])
     public var items: Array<T> {
         switch self {
         case .initial:
             return []
-        case .more(let items), .noMore(let items), .refresh(let items):
+        case .more(let items), .noMore(let items), .refresh(let items), .error(let items):
             return items
         }
     }
