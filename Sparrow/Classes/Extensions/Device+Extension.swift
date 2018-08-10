@@ -35,9 +35,9 @@ public struct Device {
     
     public static func isSimulator() -> Bool {
         #if arch(i386) || arch(x86_64)
-            return true
+        return true
         #else
-            return false
+        return false
         #endif
     }
     
@@ -65,6 +65,27 @@ public struct Device {
             return UIApplication.shared.keyWindow!.safeAreaInsets
         } else {
             return UIEdgeInsets.zero
+        }
+    }
+    
+    public static func changeIcon(_ name: String?) {
+        guard #available(iOS 10.3, *) else { return }
+        guard UIApplication.shared.supportsAlternateIcons else { return }
+        
+        UIApplication.shared.setAlternateIconName(name) { (error) in
+            
+        }
+    }
+    
+    public static var version: String {
+        let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+        let build = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
+        return "\(version)-\(build)"
+    }
+    
+    public static func taptic(_ type: UINotificationFeedbackType = UINotificationFeedbackType.success) {
+        if #available(iOS 10.0, *) {
+            UINotificationFeedbackGenerator().notificationOccurred(type)
         }
     }
 }
