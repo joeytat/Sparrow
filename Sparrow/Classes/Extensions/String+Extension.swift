@@ -96,3 +96,14 @@ public extension String {
         return components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
     }
 }
+
+public extension String {
+    /// JSON 转为 model
+    public func toModel<T: Codable>() -> T? {
+        guard let data = self.data(using: String.Encoding.utf8),
+            let model = try? JSONDecoder().decode(T.self, from: data) else {
+                return nil
+        }
+        return model
+    }
+}

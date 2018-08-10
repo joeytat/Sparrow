@@ -204,3 +204,24 @@ public extension UIView {
     }
 }
 
+// MARK: - Animations
+public extension UIView {
+    public func spinAnimation(_ start: Bool, duration: TimeInterval = 1, reverse: Bool = false) {
+        if start {
+            if self.layer.animation(forKey: "Spin") != nil {
+                self.layer.removeAnimation(forKey: "Spin")
+            }
+            self.layer.add({
+                let animation = CABasicAnimation(keyPath: "transform.rotation.z")
+                animation.fromValue = reverse ? NSNumber(floatLiteral: Double(2.0 * Float.pi)) : NSNumber(floatLiteral: 0.0)
+                animation.toValue = reverse ? NSNumber(floatLiteral: 0.0) : NSNumber(floatLiteral: Double(2.0 * Float.pi))
+                animation.duration = duration
+                animation.repeatCount = Float.infinity
+                return animation
+            }(), forKey: "Spin")
+        } else {
+            self.layer.removeAnimation(forKey: "Spin")
+        }
+    }
+}
+
