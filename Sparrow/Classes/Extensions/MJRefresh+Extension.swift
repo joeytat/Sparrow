@@ -56,6 +56,9 @@ public extension Reactive where Base: UITableView {
                     
                     header.setImages(animationImages, duration: duration, for: MJRefreshState.pulling)
                     header.setImages(animationImages, duration: duration, for: MJRefreshState.refreshing)
+                    header.setImages(animationImages, duration: duration, for: MJRefreshState.willRefresh)
+                    header.setImages(animationImages, duration: duration, for: MJRefreshState.idle)
+                    
                     tableView.mj_header = header
                 } else {
                     tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
