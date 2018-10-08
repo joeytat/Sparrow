@@ -40,11 +40,11 @@ s.source_files = 'Sparrow/Classes/**/*'
 
 s.frameworks = 'UIKit'
 s.dependency 'Moya', '~> 11.0.0'
-s.dependency 'RxSwift', '~> 4.2.0'
-s.dependency 'RxCocoa', '~> 4.2.0'
+s.dependency 'RxSwift', '~> 4.1.0'
+s.dependency 'RxCocoa', '~> 4.1.0'
 s.dependency 'SnapKit', '~> 4.0.0'
-s.dependency 'IQKeyboardManagerSwift', '~> 6.1.1'
-s.dependency 'KeychainAccess', '~> 3.1.2'
+s.dependency 'IQKeyboardManagerSwift', '~> 5.0.6'
+s.dependency 'KeychainAccess', '~> 3.1.0'
 s.dependency 'KMNavigationBarTransition', '~> 1.1.5'
 s.dependency 'Kingfisher', '~> 4.9.0'
 s.dependency 'RxDataSources', '~> 3.0.2'
@@ -54,4 +54,5 @@ s.dependency 'MJRefresh', '~> 3.1.15.1'
 s.dependency 'DKImagePickerController', '~> 3.8.1'
 s.dependency 'Toast-Swift', '~> 3.0.1'
 end
+
 
