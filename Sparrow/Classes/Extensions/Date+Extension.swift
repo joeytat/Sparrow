@@ -39,26 +39,26 @@ public extension Date {
     
     public func pretty(displayJustNow: Bool = false) -> String {
         let now = Date().timeIntervalSince1970
-        let day: TimeInterval = 60 * 60 * 24
-        let hourStr = self.format(with: "HH:mm")
+        let calendar = Calendar.current
         
-        let target = self.startOfTheDay.timeIntervalSince1970
-        
-        if now - target > (day * 7) {
-            return format(with: "yyyy/MM/dd")
-        } else if now - target > (day * 2) {
-            let calendar = Calendar.current
-            let components = calendar.dateComponents([.weekday], from: self)
-            let format = NumberFormatter()
-            format.numberStyle = NumberFormatter.Style.spellOut
-            let weekday = format.string(from: NSNumber.init(value: components.weekday.or(0))).orEmpty
-            return "星期\(weekday) \(hourStr)"
-        } else if now - target > day {
-            return "昨天 \(hourStr)"
-        } else if !displayJustNow || now - self.timeIntervalSince1970 > 120 { // 两分钟
-            return hourStr
-        } else {
+        if displayJustNow, now - timeIntervalSince1970 < 60 {
             return "刚刚"
+        } else if now - timeIntervalSince1970 < 60 * 60 && calendar.isDateInToday(self) {
+            let min = Int(ceil((now - self.timeIntervalSince1970) / 60))
+            return "\(min) 分钟前"
+        } else if calendar.isDateInToday(self) {
+            return format(with: "HH:mm")
+        } else if calendar.isDateInYesterday(self) {
+            return "昨天 \(format(with: "HH:mm"))"
+        } else if isSameYear() {
+            let month = calendar.component(Calendar.Component.month, from: self)
+            let day = calendar.component(Calendar.Component.day, from: self)
+            return "\(month) 月 \(day) 日"
+        } else {
+            let year = calendar.component(Calendar.Component.month, from: self)
+            let month = calendar.component(Calendar.Component.month, from: self)
+            let day = calendar.component(Calendar.Component.day, from: self)
+            return "\(year) 年 \(month) 月 \(day) 日"
         }
     }
     
@@ -73,6 +73,13 @@ public extension Date {
         return date
     }
     
+    public func isSameYear(_ compareDate: Date = Date()) -> Bool {
+        let calendar = Calendar.current
+        let targetYear = Optional(calendar.component(Calendar.Component.year, from: self))
+        let compareYear = Optional(calendar.component(Calendar.Component.year, from: compareDate))
+        
+        return targetYear == compareYear
+    }
 }
 
 
