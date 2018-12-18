@@ -8,6 +8,7 @@
 import Foundation
 import AudioUnit
 import AVFoundation
+import StoreKit
 
 public struct Device {
     public static func playSound(_ filename: String, type: String? = nil) {
@@ -86,6 +87,19 @@ public struct Device {
     public static func taptic(_ type: UINotificationFeedbackGenerator.FeedbackType = UINotificationFeedbackGenerator.FeedbackType.success) {
         if #available(iOS 10.0, *) {
             UINotificationFeedbackGenerator().notificationOccurred(type)
+        }
+    }
+    
+    public static func copyText(_ text: String?, of: String = "") {
+        UIPasteboard.general.string = text
+        UIApplication.shared.keyWindow?
+            .visibleViewController?
+            .show("已复制\(of)到粘贴板")
+    }
+    
+    public static func askForRating() {
+        if #available(iOS 10.3, *) {
+            SKStoreReviewController.requestReview()
         }
     }
 }
