@@ -50,9 +50,9 @@ public struct Device {
     
     
     public static func openSettings() {
-        guard let url = URL(string: UIApplicationOpenSettingsURLString) else { return }
+        guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
         if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
         }
     }
     
@@ -83,9 +83,14 @@ public struct Device {
         return "\(version)-\(build)"
     }
     
-    public static func taptic(_ type: UINotificationFeedbackType = UINotificationFeedbackType.success) {
+    public static func taptic(_ type: UINotificationFeedbackGenerator.FeedbackType = UINotificationFeedbackGenerator.FeedbackType.success) {
         if #available(iOS 10.0, *) {
             UINotificationFeedbackGenerator().notificationOccurred(type)
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

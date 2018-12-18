@@ -41,7 +41,7 @@ public extension UIWindow {
     public var loadingView: UIView {
         get {
             if let view = objc_getAssociatedObject(self, &AssociatedKeys.loadingView) as? UIView {
-                self.bringSubview(toFront: view)
+                self.bringSubviewToFront(view)
                 return view
             } else {
                 let view = UIView()
@@ -91,7 +91,7 @@ public extension UIWindow {
             if let view = objc_getAssociatedObject(self, &AssociatedKeys.loadingActivity) as? UIActivityIndicatorView {
                 return view
             } else {
-                let view = UIActivityIndicatorView(activityIndicatorStyle: .white)
+                let view = UIActivityIndicatorView(style: .white)
                 view.startAnimating()
                 
                 objc_setAssociatedObject(self, &AssociatedKeys.loadingActivity, view, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)

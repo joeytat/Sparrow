@@ -18,21 +18,21 @@ public extension UIButton {
             let halfSpace = (newValue / 2.0)
             let halfImageWidth = (currentImage.size.width / 2.0)
             let halfImageHeight = (currentImage.size.height / 2.0)
-            titleEdgeInsets = UIEdgeInsetsMake(
-                halfImageHeight + halfSpace,
-                -halfImageWidth,
-                -halfImageHeight - halfSpace,
-                halfImageWidth
+            titleEdgeInsets = UIEdgeInsets.init(
+                top: halfImageHeight + halfSpace,
+                left: -halfImageWidth,
+                bottom: -halfImageHeight - halfSpace,
+                right: halfImageWidth
             )
             
             let titleBounds = currentTitle.size(withAttributes: [.font: titleLabel.font])
             let halfEdgeWidth = (titleBounds.width / 2.0)
             let halfEdgeHeight = (titleBounds.height / 2.0)
-            imageEdgeInsets = UIEdgeInsetsMake(
-                -halfEdgeHeight - halfSpace,
-                halfEdgeWidth,
-                halfEdgeHeight + halfSpace,
-                -halfEdgeWidth
+            imageEdgeInsets = UIEdgeInsets.init(
+                top: -halfEdgeHeight - halfSpace,
+                left: halfEdgeWidth,
+                bottom: halfEdgeHeight + halfSpace,
+                right: -halfEdgeWidth
             )
         }
         get {

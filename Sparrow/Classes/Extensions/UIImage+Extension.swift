@@ -65,7 +65,7 @@ public extension UIImage {
         let filePath = "\(tempDir)\(filename.replacingOccurrences(of: "/", with: "")).jpeg"
         
         
-        guard let image = UIImageJPEGRepresentation(self, 0.7) else { return nil }
+        guard let image = self.jpegData(compressionQuality: 0.7) else { return nil }
         do {
             let url = URL(fileURLWithPath: filePath)
             try image.write(to: url)

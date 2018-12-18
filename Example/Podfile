@@ -1,4 +1,5 @@
 use_frameworks!
+inhibit_all_warnings!
 
 target 'Sparrow_Example' do
     pod 'Sparrow', :path => '../'

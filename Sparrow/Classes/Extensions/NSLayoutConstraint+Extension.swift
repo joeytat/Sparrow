@@ -24,9 +24,9 @@ public extension NSLayoutConstraint {
     @IBInspectable public var spaceBetweenKeybaord: Int {
         set {
             let keyboardDisplay = NotificationCenter.default.rx
-                .notification(Notification.Name.UIKeyboardWillChangeFrame)
+                .notification(UIResponder.keyboardWillChangeFrameNotification)
                 .map { n -> CGFloat in
-                    let value = (n.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+                    let value = (n.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
                     if #available(iOS 11.0, *) {
                         let bottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
                         return ceil(value.height) - bottom + CGFloat(newValue)
@@ -36,7 +36,7 @@ public extension NSLayoutConstraint {
             }
             
             let keyboardHide = NotificationCenter.default.rx
-                .notification(Notification.Name.UIKeyboardWillHide)
+                .notification(UIResponder.keyboardWillHideNotification)
                 .map { n in
                     return CGFloat(newValue)
             }

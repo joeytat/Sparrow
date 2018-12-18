@@ -47,7 +47,7 @@ public extension Reactive where Base: UITableView {
                 if animationImages.count > 0 {
                     let header = MJRefreshGifHeader(refreshingBlock: {
                         if #available(iOS 10.0, *) {
-                            UINotificationFeedbackGenerator().notificationOccurred(UINotificationFeedbackType.success)
+                            UINotificationFeedbackGenerator().notificationOccurred(UINotificationFeedbackGenerator.FeedbackType.success)
                         }
                         observer.onNext(1)
                     })!
@@ -63,7 +63,7 @@ public extension Reactive where Base: UITableView {
                 } else {
                     tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
                         if #available(iOS 10.0, *) {
-                            UINotificationFeedbackGenerator().notificationOccurred(UINotificationFeedbackType.success)
+                            UINotificationFeedbackGenerator().notificationOccurred(UINotificationFeedbackGenerator.FeedbackType.success)
                         }
                         observer.onNext(1)
                     })
