@@ -55,7 +55,7 @@ public extension Date {
             let day = calendar.component(Calendar.Component.day, from: self)
             return "\(month) 月 \(day) 日"
         } else {
-            let year = calendar.component(Calendar.Component.month, from: self)
+            let year = calendar.component(Calendar.Component.year, from: self)
             let month = calendar.component(Calendar.Component.month, from: self)
             let day = calendar.component(Calendar.Component.day, from: self)
             return "\(year) 年 \(month) 月 \(day) 日"
