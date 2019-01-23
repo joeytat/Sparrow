@@ -14,7 +14,6 @@ public extension Double {
     }
 }
 
-
 public extension BinaryInteger {
     public var degreesToRadians: CGFloat { return CGFloat(Int(self)) * .pi / 180 }
 }
@@ -24,3 +23,13 @@ public extension FloatingPoint {
     public var radiansToDegrees: Self { return self * 180 / .pi }
 }
 
+public extension NSNumber {
+    public func currency(currencySymbol: String = "", digits: Int = 2) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.maximumFractionDigits = digits
+        formatter.generatesDecimalNumbers = true
+        formatter.currencySymbol = currencySymbol
+        return formatter.string(from: self)!
+    }
+}
