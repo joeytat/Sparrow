@@ -26,7 +26,6 @@ s.homepage         = 'https://github.com/Joeytat/Sparrow'
 s.license          = { :type => 'MIT', :file => 'LICENSE' }
 s.author           = { 'Joeytat' => 'joeyqaq@gmail.com' }
 s.source           = { :git => 'https://github.com/Joeytat/Sparrow.git', :tag => s.version.to_s }
-# s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
 s.ios.deployment_target = '10.0'
 
@@ -46,7 +45,7 @@ s.dependency 'SnapKit', '~> 4.2.0'
 s.dependency 'IQKeyboardManagerSwift', '~> 6.2.0'
 s.dependency 'KeychainAccess', '~> 3.1.0'
 s.dependency 'KMNavigationBarTransition', '~> 1.1.5'
-s.dependency 'Kingfisher', '~> 5.0.1'
+s.dependency 'Kingfisher', '~> 5.3.1'
 s.dependency 'RxDataSources', '~> 3.1.0'
 s.dependency 'NSObject+Rx', '~> 4.4.1'
 s.dependency 'Reachability', '~> 3.2'
