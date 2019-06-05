@@ -9,14 +9,14 @@ import Foundation
 import UIKit
 
 public extension UIScreen {
-    @nonobjc public  class var width: CGFloat {
-        get {
-            return UIScreen.main.bounds.width
-        }
+  @nonobjc public  class var width: CGFloat {
+    get {
+      return UIScreen.main.bounds.width
     }
-    @nonobjc public class var height: CGFloat {
-        get {
-            return UIScreen.main.bounds.height
-        }
+  }
+  @nonobjc public class var height: CGFloat {
+    get {
+      return UIScreen.main.bounds.height
     }
+  }
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 public func delay(_ delay: Double, closure: @escaping () -> ()) {
-    DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-        closure()
-    }
+  DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+    closure()
+  }
 }

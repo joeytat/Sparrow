@@ -11,20 +11,20 @@ import UIKit
 import Result
 
 public class LoadingPlugin: PluginType {
+  
+  public init() {}
+  
+  public func willSend(_ request: RequestType, target: TargetType) {
+    UIApplication.shared.isNetworkActivityIndicatorVisible = true
     
-    public init() {}
+    guard let window = UIApplication.shared.keyWindow else { return }
+    window.displayLoading()
+  }
+  
+  public func didReceive(_ result: Result<Moya.Response, MoyaError>, target: TargetType) {
+    UIApplication.shared.isNetworkActivityIndicatorVisible = false
     
-    public func willSend(_ request: RequestType, target: TargetType) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
-        guard let window = UIApplication.shared.keyWindow else { return }
-        window.displayLoading()
-    }
-    
-    public func didReceive(_ result: Result<Moya.Response, MoyaError>, target: TargetType) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        
-        guard let window = UIApplication.shared.keyWindow else { return }
-        window.hideLoading()
-    }
+    guard let window = UIApplication.shared.keyWindow else { return }
+    window.hideLoading()
+  }
 }

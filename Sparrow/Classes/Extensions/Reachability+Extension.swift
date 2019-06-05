@@ -31,12 +31,12 @@ public extension Reachability {
 }
 
 public extension Reactive where Base: Reachability {
-
+  
   public static var reachable: Observable<Bool> {
     return Observable.create { observer in
-
+      
       let reachability = Reachability.forInternetConnection()
-
+      
       if let reachability = reachability {
         observer.onNext(reachability.isReachable())
         reachability.reachableBlock = { _ in observer.onNext(true) }
@@ -45,7 +45,7 @@ public extension Reactive where Base: Reachability {
       } else {
         observer.onError(Reachability.Errors.unavailable)
       }
-
+      
       return Disposables.create {
         reachability?.stopNotifier()
       }

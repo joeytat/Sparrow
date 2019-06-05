@@ -2,9 +2,9 @@ use_frameworks!
 inhibit_all_warnings!
 
 target 'Sparrow_Example' do
-    pod 'Sparrow', :path => '../'
-    
-    target 'Sparrow_Tests' do
-        inherit! :search_paths
-    end
+  pod 'Sparrow', :path => '../'
+  
+  target 'Sparrow_Tests' do
+    inherit! :search_paths
+  end
 end
